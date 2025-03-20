@@ -11,7 +11,7 @@ LockPort_LANG["LockPortLoc_Settings_Chat_Header"] = "|CFFB700B7C|CFFFF00FFh|CFFF
 LockPort_LANG["Toggle_The_Usage_Of_Whisper"] = "拉人时密语通知"
 LockPort_LANG["Toggle_The_Zoneinfo_Message"] = "通知中包含地区信息"
 LockPort_LANG["Toggle_Shards_Count_Message"] = "通知中包含灵魂碎片数量"
-LockPort_LANG["Toggle_Sound_On_Summon_Request"] = "当有拉人请求时使用声音提醒"
+LockPort_LANG["Toggle_Sound_On_Summon_Request"] = "有拉人请求时使用声音提醒"
 
 end
 
