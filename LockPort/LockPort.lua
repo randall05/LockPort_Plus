@@ -5,10 +5,10 @@ local LockPortOptions_DefaultSettings = {
     sound  = true,
 }
 
-local function LockPort_TransEnglishFromClassFile(class){
+local function LockPort_TransEnglishFromClassFile(class)
     class = string.lower(class)
     return string.upper(string.sub(class, 1, 1)) .. string.sub(class, 2)
-}
+end
 
 local function LockPort_Initialize()
 	if not LockPortOptions  then
