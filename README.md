@@ -1,5 +1,5 @@
 # LockPort_CN
-forked from seacrabsam/LockPort
+forked from [seacrabsam/LockPort](https://github.com/seacrabsam/LockPort)
 
 部分汉化
 
