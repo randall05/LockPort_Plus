@@ -3,6 +3,8 @@ LockPort. Easy warlock summoning for turtle wow.
 
 Addon orginally written by Gurky. I am just rehosting it.
 
+Add localization support and zhCN translation.
+
 ## Requirments
 
 - Be a Warlock!
