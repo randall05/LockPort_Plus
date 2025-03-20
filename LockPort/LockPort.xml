@@ -111,21 +111,21 @@
 		</Anchors>
 	</Button>
 
-	<Font name="LockPort_GameFontHeader" font="Interface\AddOns\LockPort\fonts\Expressway.ttf" virtual="true">
+	<Font name="LockPort_GameFontHeader" font="Interface\AddOns\LockPort\fonts\Yahei.ttf" virtual="true">
 		<FontHeight>
 			<AbsValue val="14"/>
 		</FontHeight>
 		<Color r="1" g="1" b="1"/>
 	</Font>
 
-	<Font name="LockPort_Settings_GameFontHeader" font="Interface\AddOns\LockPort\fonts\Expressway.ttf" virtual="true">
+	<Font name="LockPort_Settings_GameFontHeader" font="Interface\AddOns\LockPort\fonts\Yahei.ttf" virtual="true">
 		<FontHeight>
 			<AbsValue val="16"/>
 		</FontHeight>
 		<Color r="1" g="1" b="1"/>
 	</Font>
 	
-	<Font name="LockPort_Settings_GameFontNormal" font="Interface\AddOns\LockPort\fonts\Expressway.ttf" virtual="true">
+	<Font name="LockPort_Settings_GameFontNormal" font="Interface\AddOns\LockPort\fonts\Yahei.ttf" virtual="true">
 		<FontHeight>
 			<AbsValue val="12"/>
 		</FontHeight>

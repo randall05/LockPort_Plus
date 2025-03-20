@@ -118,7 +118,7 @@ end
 function LockPort_NameListButton_OnClick(button)
 	local name = getglobal(this:GetName().."TextName"):GetText()
 	local message, base_message, whisper_message, base_whisper_message, whisper_eviltwin_message, zone_message, subzone_message = ""
-	local bag,slot,texture,count = FindItem(SoulShard)
+	local bag,slot,texture,count = FindItem(LockPort_SoulShard)
 	local eviltwin_debuff = "Spell_Shadow_Charm"
 	local has_eviltwin = false
 
@@ -192,7 +192,7 @@ function LockPort_NameListButton_OnClick(button)
 						end
 					else
 						-- TODO: Detect if spell is aborted/cancelled : use SpellStopCasting if sit ("You must be standing to do that")
-						CastSpellByName(SummonSpell)
+						CastSpellByName(LockPort_SummonSpell)
 
 						-- Send Raid Message
 						if LockPortOptions.zone then
@@ -280,9 +280,10 @@ function LockPort_UpdateList()
 		for i=1,10 do
 			if LockPort_BrowseDB[i] then
 				getglobal("LockPort_NameList"..i.."TextName"):SetText(LockPort_BrowseDB[i].rName)
-				
+
 				--set class color
-				local c = LockPort_GetClassColour(rClassFile)
+				local rColorClass = string.upper(LockPort_BrowseDB[i].rClass)
+				local c = LockPort_GetClassColour(rColorClass)
 				getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
 				
 				getglobal("LockPort_NameList"..i):Show()

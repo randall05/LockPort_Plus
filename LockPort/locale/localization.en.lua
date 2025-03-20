@@ -1,9 +1,9 @@
 -- if ( GetLocale() == "enUS" ) then
 	
-local SoulShard   = "Soul Shard"
-local SummonSpell = "Ritual of Summoning"
+LockPort_SoulShard   = "Soul Shard"
+LockPort_SummonSpell = "Ritual of Summoning"
 
-local LockPort_LANG={}
+LockPort_LANG={}
 LockPort_LANG["LockPortLoc_Header"] = "|CFFB700B7L|CFFFF00FFo|CFFFF50FFc|CFFFF99FFk|CFFFFC4FFP|cffffffffort|r"
 LockPort_LANG["LockPortLoc_Settings_Header"] = "|CFFB700B7L|CFFFF00FFo|CFFFF50FFc|CFFFF99FFk|CFFFFC4FFP|cffffffffort|r Settings"
 LockPort_LANG["LockPortLoc_Settings_Chat_Header"] = "|CFFB700B7C|CFFFF00FFh|CFFFF50FFa|CFFFF99FFt|CFFFFC4FF S|cffffffffett|rings"

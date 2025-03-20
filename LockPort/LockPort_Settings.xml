@@ -24,36 +24,36 @@
 						</FontString>
 						<FontString name="LockPort_Settings_Chat_Whisper" inherits="LockPort_Settings_GameFontNormal" text="Toggle_The_Usage_Of_Whisper">
 							<Anchors>
-								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="TOP">
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="TOP">
 									<Offset>
-										<AbsDimension x="80" y="-62"/>
+										<AbsDimension x="-90" y="-62"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
 						</FontString>
 						<FontString name="LockPort_Settings_Chat_Zone" inherits="LockPort_Settings_GameFontNormal" text="Toggle_The_Zoneinfo_Message">
 							<Anchors>
-								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="TOP">
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="TOP">
 									<Offset>
-										<AbsDimension x="85" y="-86"/>
+										<AbsDimension x="-90" y="-86"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
 						</FontString>
 						<FontString name="LockPort_Settings_Chat_Shard" inherits="LockPort_Settings_GameFontNormal" text="Toggle_Shards_Count_Message">
 							<Anchors>
-								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="TOP">
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="TOP">
 									<Offset>
-										<AbsDimension x="87" y="-111"/>
+										<AbsDimension x="-90" y="-111"/>
 									</Offset>
 								</Anchor>
 							</Anchors>
 						</FontString>
-						<FontString name="LockPort_Settings_Chat_Sound" inherits="LockPort_Settings_GameFontNormal" text="Toggle_Sound_On_Summon_Request.">
+						<FontString name="LockPort_Settings_Chat_Sound" inherits="LockPort_Settings_GameFontNormal" text="Toggle_Sound_On_Summon_Request">
 							<Anchors>
-								<Anchor point="RIGHT" relativeTo="$parent" relativePoint="TOP">
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="TOP">
 									<Offset>
-										<AbsDimension x="109" y="-136"/>
+										<AbsDimension x="-90" y="-136"/>
 									</Offset>
 								</Anchor>
 							</Anchors>

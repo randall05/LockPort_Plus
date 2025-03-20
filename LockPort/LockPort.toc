@@ -6,8 +6,8 @@
 ## Author: |cff02bf02Bennylava|r
 ## Interface: 11200
 ## SavedVariables: LockPortOptions lpupdateavailable
-locale/localization.en.lua
-locale/localization.cn.lua
+locale\localization.en.lua
+locale\localization.cn.lua
 
 LockPort.xml
 LockPort_Settings.xml
