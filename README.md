@@ -1,9 +1,13 @@
+# LockPort_CN
+forked from seacrabsam/LockPort
+
+部分汉化
+
 # LockPort
 LockPort. Easy warlock summoning for turtle wow.
 
 Addon orginally written by Gurky. I am just rehosting it.
 
-Add localization support and zhCN translation.
 
 ## Requirments
 
