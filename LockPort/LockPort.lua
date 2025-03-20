@@ -5,6 +5,11 @@ local LockPortOptions_DefaultSettings = {
     sound  = true,
 }
 
+local function LockPort_TransEnglishFromClassFile(class){
+    class = string.lower(class)
+    return string.upper(string.sub(class, 1, 1)) .. string.sub(class, 2)
+}
+
 local function LockPort_Initialize()
 	if not LockPortOptions  then
 		LockPortOptions = {}
@@ -56,9 +61,13 @@ function LockPort_EventFrame_OnLoad()
 	LockPortDB = {}
 	-- Sync Summon Table between raiders ? (if in raid & raiders with unempty table)
 	--localization
-	LockPortLoc_Header = "|CFFB700B7L|CFFFF00FFo|CFFFF50FFc|CFFFF99FFk|CFFFFC4FFP|cffffffffort|r"
-	LockPortLoc_Settings_Header = "|CFFB700B7L|CFFFF00FFo|CFFFF50FFc|CFFFF99FFk|CFFFFC4FFP|cffffffffort|r Settings"
-	LockPortLoc_Settings_Chat_Header = "|CFFB700B7C|CFFFF00FFh|CFFFF50FFa|CFFFF99FFt|CFFFFC4FF S|cffffffffett|rings"
+	LockPortLoc_Header = LockPort_LANG["LockPortLoc_Header"]
+	LockPortLoc_Settings_Header = LockPort_LANG["LockPortLoc_Settings_Header"]
+	LockPortLoc_Settings_Chat_Header = LockPort_LANG["LockPortLoc_Settings_Chat_Header"]
+	Toggle_The_Usage_Of_Whisper = LockPort_LANG["Toggle_The_Usage_Of_Whisper"]
+	Toggle_The_Zoneinfo_Message = LockPort_LANG["Toggle_The_Zoneinfo_Message"]
+	Toggle_Shards_Count_Message = LockPort_LANG["Toggle_Shards_Count_Message"]
+	Toggle_Sound_On_Summon_Request = LockPort_LANG["Toggle_Sound_On_Summon_Request"]
 end
 
 function LockPort_EventFrame_OnEvent()
@@ -74,7 +83,8 @@ function LockPort_EventFrame_OnEvent()
 	elseif event == "CHAT_MSG_ADDON" then
 		if arg1 == MSG_PREFIX_ADD then
 			-- DEFAULT_CHAT_FRAME:AddMessage("CHAT_MSG_ADDON - RSAdd : " .. arg2)
-			if not LockPort_hasValue(LockPortDB, arg2) and UnitName("player")~=arg2 and UnitClass("player") == "Warlock" then
+			local _, playerclass = UnitClass("player")
+			if not LockPort_hasValue(LockPortDB, arg2) and UnitName("player")~=arg2 and playerclass == "WARLOCK" then
 				table.insert(LockPortDB, arg2)
 				LockPort_UpdateList()
 				if LockPortOptions.sound then
@@ -108,7 +118,7 @@ end
 function LockPort_NameListButton_OnClick(button)
 	local name = getglobal(this:GetName().."TextName"):GetText()
 	local message, base_message, whisper_message, base_whisper_message, whisper_eviltwin_message, zone_message, subzone_message = ""
-	local bag,slot,texture,count = FindItem("Soul Shard")
+	local bag,slot,texture,count = FindItem(SoulShard)
 	local eviltwin_debuff = "Spell_Shadow_Charm"
 	local has_eviltwin = false
 
@@ -182,7 +192,7 @@ function LockPort_NameListButton_OnClick(button)
 						end
 					else
 						-- TODO: Detect if spell is aborted/cancelled : use SpellStopCasting if sit ("You must be standing to do that")
-						CastSpellByName("Ritual of Summoning")
+						CastSpellByName(SummonSpell)
 
 						-- Send Raid Message
 						if LockPortOptions.zone then
@@ -239,21 +249,22 @@ end
 function LockPort_UpdateList()
 	LockPort_BrowseDB = {}
 	--only Update and show if Player is Warlock
-	 if (UnitClass("player") == "Warlock") then
+	local _, playerclass = UnitClass("player")
+	if (playerclass == "WARLOCK") then
 		--get raid member data
 		local raidnum = GetNumRaidMembers()
 		if (raidnum > 0) then
 			for raidmember = 1, raidnum do
-				local rName, rRank, rSubgroup, rLevel, rClass = GetRaidRosterInfo(raidmember)
+				local rName, rRank, rSubgroup, rLevel, _, rClassFile = GetRaidRosterInfo(raidmember)
 				--check raid data for LockPort data
 				for i, v in ipairs (LockPortDB) do 
 					--if player is found fill BrowseDB
 					if v == rName then
 						LockPort_BrowseDB[i] = {}
 						LockPort_BrowseDB[i].rName = rName
-						LockPort_BrowseDB[i].rClass = rClass
+						LockPort_BrowseDB[i].rClass = LockPort_TransEnglishFromClassFile(rClassFile)
 						LockPort_BrowseDB[i].rIndex = i
-						if rClass == "Warlock" or rName == "Bennylava" then
+						if rClassFile == "WARLOCK" or rName == "Bennylava" or string.find(rName, "lala$") then
 							LockPort_BrowseDB[i].rVIP = true
 						else
 							LockPort_BrowseDB[i].rVIP = false
@@ -271,34 +282,8 @@ function LockPort_UpdateList()
 				getglobal("LockPort_NameList"..i.."TextName"):SetText(LockPort_BrowseDB[i].rName)
 				
 				--set class color
-				if LockPort_BrowseDB[i].rClass == "Druid" then
-					local c = LockPort_GetClassColour("DRUID")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Hunter" then
-					local c = LockPort_GetClassColour("HUNTER")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Mage" then
-					local c = LockPort_GetClassColour("MAGE")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Paladin" then
-					local c = LockPort_GetClassColour("PALADIN")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Priest" then
-					local c = LockPort_GetClassColour("PRIEST")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Rogue" then
-					local c = LockPort_GetClassColour("ROGUE")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Shaman" then
-					local c = LockPort_GetClassColour("SHAMAN")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Warlock" then
-					local c = LockPort_GetClassColour("WARLOCK")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				elseif LockPort_BrowseDB[i].rClass == "Warrior" then
-					local c = LockPort_GetClassColour("WARRIOR")
-					getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
-				end				
+				local c = LockPort_GetClassColour(rClassFile)
+				getglobal("LockPort_NameList"..i.."TextName"):SetTextColor(c.r, c.g, c.b, 1)
 				
 				getglobal("LockPort_NameList"..i):Show()
 			else
@@ -406,13 +391,13 @@ function LockPort_GetRaidMembers()
     if (raidnum > 0) then
 		LockPort_UnitIDDB = {}
 		for i = 1, raidnum do
-		    local rName, rRank, rSubgroup, rLevel, rClass = GetRaidRosterInfo(i)
+		    local rName, rRank, rSubgroup, rLevel, _, rClassFile = GetRaidRosterInfo(i)
 			LockPort_UnitIDDB[i] = {}
 			if (not rName) then 
 			    rName = "unknown"..i
 			end
 			LockPort_UnitIDDB[i].rName    = rName
-			LockPort_UnitIDDB[i].rClass   = rClass
+			LockPort_UnitIDDB[i].rClass   = LockPort_TransEnglishFromClassFile(rClassFile)
 			LockPort_UnitIDDB[i].rIndex   = i
 	    end
 	end
