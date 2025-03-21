@@ -1,7 +1,7 @@
 # LockPort_CN
 forked from [seacrabsam/LockPort](https://github.com/seacrabsam/LockPort)
 
-部分汉化
+兼容中文客户端，增加多语言支持，部分汉化
 
 # LockPort
 LockPort. Easy warlock summoning for turtle wow.
