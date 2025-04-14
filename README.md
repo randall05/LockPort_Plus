@@ -2,7 +2,7 @@
 forked from [seacrabsam/LockPort](https://github.com/seacrabsam/LockPort)
 
 - supports other language clients.
-- add support for multiple localizations
+- add support for multiple localizations (e.g., localization.en.lua, localization.cn.lua)."
 
 兼容中文客户端，增加多语言支持，部分汉化
 
