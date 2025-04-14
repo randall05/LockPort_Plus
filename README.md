@@ -1,6 +1,9 @@
 # LockPort_CN
 forked from [seacrabsam/LockPort](https://github.com/seacrabsam/LockPort)
 
+- supports other language clients.
+- add support for multiple localizations
+
 兼容中文客户端，增加多语言支持，部分汉化
 
 # LockPort
