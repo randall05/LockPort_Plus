@@ -1,4 +1,4 @@
-# LockPort_CN
+# LockPort_Plus
 forked from [seacrabsam/LockPort](https://github.com/seacrabsam/LockPort)
 
 - supports other language clients.
